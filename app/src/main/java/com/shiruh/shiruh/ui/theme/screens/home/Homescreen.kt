@@ -22,10 +22,14 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.shiruh.shiruh.R
+import com.shiruh.shiruh.navigation.route_LOGIN
+import com.shiruh.shiruh.navigation.route_REGISTER
 
 @Composable
-fun Homescreen(modifier: Modifier = Modifier) {
+fun Homescreen(navController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize()
         .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,14 +49,14 @@ fun Homescreen(modifier: Modifier = Modifier) {
             fontFamily = FontFamily.Cursive,
             fontStyle = FontStyle.Normal)
         Spacer(modifier = Modifier.height(40.dp))
-        Button(onClick = {},
+        Button(onClick = {navController.navigate(route_LOGIN)},
             modifier = Modifier.width(300.dp)) {
             Text("Login",
                 fontSize = 30.sp,
                 color = Color.Black)
         }
         Spacer(modifier = Modifier.height(40.dp))
-        Button(onClick = {},
+        Button(onClick = {navController.navigate(route_REGISTER)},
             modifier = Modifier.width(300.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta)) {
             Text("Registration",
@@ -67,6 +71,6 @@ fun Homescreen(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun Homeprev() {
-    Homescreen()
+    Homescreen(rememberNavController())
 
 }

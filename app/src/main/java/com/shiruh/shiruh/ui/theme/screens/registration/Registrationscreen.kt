@@ -1,6 +1,7 @@
 package com.shiruh.shiruh.ui.theme.screens.registration
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,9 +31,12 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.shiruh.shiruh.navigation.route_LOGIN
 
 @Composable
-fun Registrationscreen (modifier: Modifier = Modifier) {
+fun Registrationscreen (navController:NavHostController) {
     var firstname by remember { mutableStateOf(TextFieldValue("")) }
     var lastname by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
@@ -87,12 +91,22 @@ fun Registrationscreen (modifier: Modifier = Modifier) {
             modifier = Modifier.padding(16.dp)
         )
         Spacer(modifier = Modifier.height(30.dp))
-        Button(onClick = {},
+        Button(onClick = {/*TODO*/},
             modifier = Modifier.width(300.dp)) {
             Text(text = "Register",
                 fontSize = 30.sp,
                 fontFamily = FontFamily.Monospace)
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "Have an account??click to login"+
+            "Click to login",
+            fontSize = 28.sp,
+            fontFamily = FontFamily.SansSerif,
+            modifier=Modifier.clickable { navController.navigate(route_LOGIN) }
+
+
+        )
 
 
     }
@@ -102,6 +116,6 @@ fun Registrationscreen (modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun Registrationprev() {
-    Registrationscreen()
+    Registrationscreen(rememberNavController())
 
 }

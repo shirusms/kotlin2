@@ -1,6 +1,7 @@
 package com.shiruh.shiruh.ui.theme.screens.login
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,9 +31,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.shiruh.shiruh.navigation.route_HOME
+import com.shiruh.shiruh.navigation.route_REGISTER
 
 @Composable
-fun Loginscreen (modifier: Modifier = Modifier) {
+fun Loginscreen (navController:NavHostController) {
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     Column(verticalArrangement = Arrangement.Center,
@@ -63,12 +68,26 @@ fun Loginscreen (modifier: Modifier = Modifier) {
             modifier = Modifier.padding(16.dp)
         )
         Spacer(modifier = Modifier.height(50.dp))
-        Button(onClick = {},
+        Button(onClick = {/*TODO*/},
             modifier = Modifier.width(300.dp)) {
             Text(text = "Login",
                 fontSize = 30.sp,
                 fontFamily = FontFamily.Monospace)
+            Text(
+                text = "Back Home",
+                fontSize=30.sp,
+                modifier = Modifier.clickable { navController.navigate(route_HOME) }
+
+            )
         }
+        Spacer(modifier = Modifier.height(20.dp))
+        Text(
+            text = "Dont have an account!!click to sign up"+
+            "Click to sign up",
+            fontSize = 20.sp,
+            fontFamily= FontFamily.Serif,
+            modifier=Modifier.clickable { navController.navigate(route_REGISTER) }
+        )
 
 
     }
@@ -78,6 +97,6 @@ fun Loginscreen (modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun Loginprev() {
-    Loginscreen()
+    Loginscreen(rememberNavController())
 
 }
